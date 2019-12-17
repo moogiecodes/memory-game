@@ -21,82 +21,73 @@ container {
   height: 100vh;
   perspective: 500px;
   margin-left: 28vw;
-  justify-content: center;
+  justify-content: space-around;
   align-content: center;
   padding: 5%;
 }
 .card-div {
   margin: auto;
-  width: 15vw;
-  height: 20vh;
+  width: 11vw;
+  height: 22vh;
   justify-content: center;
   position: relative;
 }
 .card-wrapper {
   position: absolute;
-  width: 100%;
-  height: 100%;
+  width: inherit;
+  height: inherit;
+  border-radius: 1.75em;
   display: flex;
   justify-content: center;
   align-items: center;
   backface-visibility: hidden;
   transition: transform 0.8s ease-in-out;
 }
-/* change back to .visible */
 .card-div.visible .front {
   transform: rotateY(-180deg);
 }
 .card-div.visible .back {
   transform: rotateY(0);
 }
-.frontface {
-  position: relative;
-}
-.backface-img {
-  object-fit: cover;
-  width: 15vw;
-  height: 20vh;
-  position: relative;
-  transition: transform 1s ease-in-out;
-}
 .back {
   transform: rotateY(180deg);
 }
 .front {
   transform: rotateY(0);
-  background-color: aquamarine;
+  background-color: #bcf2ea;
+}
+.frontface {
+  position: relative;
+}
+.backface-img {
+  position: relative;
+  object-fit: cover;
+  width: inherit;
+  height: inherit;
+  border-radius: 1.75em;
+  transition: transform 1s ease-in-out;
 }
 .disableClick {
   pointer-events: none;
 }
-/*
-.cardReveal {
-  transform: rotateY(180deg);
-  visibility: visible;
-}
-*/
-/* Stacking/responsiveness needs to be fixed */
-
-/*
+/* Stack when screen width becomes 650px or less*/
 @media screen and (max-width: 650px) {
   nav {
+    display: inline-block;
+    position: relative;
     float: none;
-    display: block;
-    width: 100%;
+    border: none;
+    top: 0;
+    left: 0;
   }
-  .container {
-    margin-top: 25vh;
+  container {
     margin-left: 0;
-    text-align: center;
-    height: auto;
+    padding: 0;
+    width: 100%;
+    justify-content: center;
   }
-  .card-div {
-    width: 250px;
-    height: 250px;
-  }
-  .card-img {
-    width: 250px;
-    height: 250px;
+  .card-wrapper {
+    width: 4em;
+    height: 8em;
   }
 }
-*/
