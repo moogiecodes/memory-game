@@ -97,7 +97,7 @@ function restartGame() {
 }
 // helper function to shuffle card images
 function shuffle(srcArr) {
-  srcArr = [1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8];
+  srcArr = [1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9, 10, 10];
   for (var i = srcArr.length - 1; i > 0; i--) {
     // i = index of end of array
     var j = Math.floor(Math.random() * (i + 1)); // random index
