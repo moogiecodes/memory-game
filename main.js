@@ -78,13 +78,33 @@ function checkCardPair() {
 function restartGame() {
   // clear all classes on cards
   cardDivsArray.forEach(card => {
-    card.classList.remove("visible", "disableClick");
+    card.classList.remove("visible", "disableClick", "match");
   });
-  // shuffle backface card images
-  let shuffledCardImgs = shuffle(cardImgsArray);
-  for (let i = 0; i < cardImgsArray.length; i++) {
-    document.getElementsByTagName("img")[i].src = shuffledCardImgs[i].src;
-  }
+  // shuffle backface card images after 1 sec
+  setTimeout(() => {
+    let shuffledArr = shuffle();
+    for (let i = 0; i < shuffledArr.length; i++) {
+      console.log(shuffledArr[i].src);
+    }
+    for (let i = 0; i < shuffledArr.length; i++) {
+      // debugger;
+      document.getElementsByClassName("backface-img")[i].src =
+        shuffledArr[i].src;
+      console.log(
+        "doc img idx " +
+          i +
+          " src is" +
+          document.getElementsByClassName("backface-img")[i].src
+      );
+      // console.log("shuffledCardImg idx " + i + " src is" + shuffledArr[i].src);
+      if (
+        document.getElementsByClassName("backface-img")[i].src !==
+        shuffledArr[i].src
+      ) {
+        console.log("bitch didn't work at idx " + i);
+      }
+    }
+  }, 1000);
   // reset states and count
   flippedState = false;
   matchInProg = false;
@@ -92,19 +112,17 @@ function restartGame() {
   gameStart();
   flipCardDisplay();
 }
-function shuffle(cardImgsArray) {
-  // swaps end of array with random array val
-  let randomIdx,
-    tempVal,
-    arrayLengthIdx = cardImgsArray.length;
-  while (arrayLengthIdx !== 0) {
-    randomIdx = Math.floor(Math.random() * arrayLengthIdx);
-    arrayLengthIdx--;
-    tempVal = cardImgsArray[arrayLengthIdx];
-    cardImgsArray[arrayLengthIdx] = cardImgsArray[randomIdx];
-    cardImgsArray[randomIdx] = tempVal;
+// helper function to shuffle card images
+function shuffle(copiedArr) {
+  copiedArr = cardImgsArray.slice(); // copy of card imgs array
+  for (var i = copiedArr.length - 1; i > 0; i--) {
+    // i = index of end of array
+    var j = Math.floor(Math.random() * (i + 1)); // random index
+    var tempVal = copiedArr[i]; // temporarily hold val of end of array
+    copiedArr[i] = copiedArr[j]; // end of array reassigned to random val
+    copiedArr[j] = tempVal; // random val reassigned to end of array
   }
-  return cardImgsArray;
+  return copiedArr;
 }
 // victory alert
 function victory() {
@@ -120,3 +138,5 @@ function victory() {
 }
 // initiate on window load
 window.onload = gameStart();
+
+/* Fix shuffle card bug */
