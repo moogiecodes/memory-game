@@ -22,3 +22,5 @@ Photo Credits:
 - Christine Siracusa on Unsplash
 - Peter Bravo de los Rios on Unsplash
 - StockSnap on Pixabay
+
+Direct link to view (on Github Pages): https://moogiecodes.github.io/memory-game/
